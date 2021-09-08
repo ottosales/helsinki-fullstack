@@ -9,6 +9,11 @@ export default () => {
 	const [neutral, setNeutral] = useState(0)
 	const [bad, setBad] = useState(0)
 
+	const getAverage = () => (good + neutral + bad) !== 0 ? (good - bad) / (good + neutral + bad) : 0
+
+
+	const getPositive = () => (good + neutral + bad) !== 0 ? (good) / (good + neutral + bad) : 0
+
 	return (
 		<div className="App App-header">
 			<Header text="Thanks for stopping by!" />
@@ -19,9 +24,11 @@ export default () => {
 			<Button onClick={() => setBad(bad + 1)} text="bad :(" />
 
 			<Paragraph text="Current statistics:" />
-			<Paragraph text={good} />
-			<Paragraph text={neutral} />
-			<Paragraph text={bad} />
+			<Paragraph text={"good: " + String(good)} />
+			<Paragraph text={"neutral: " + String(neutral)} />
+			<Paragraph text={"bad: " + String(bad)} />
+			<Paragraph text={"average: " + String(getAverage())} />
+			<Paragraph text={"positive: " + String(getPositive())} />
 		</div>
 	);
 }
